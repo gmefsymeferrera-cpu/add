@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baguio City Escape | 3-Day Ultimate Itinerary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #d8f3dc;
+            --accent: #2d6a4f;
+            --warm: #e09f3e;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(rgba(27, 67, 50, 0.6), rgba(27, 67, 50, 0.7)), url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Itinerary Content Panels */
+        .day-panel {
+            display: none;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .day-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .day-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 15px;
+        }
+
+        .day-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .day-header p {
+            color: var(--gray);
+            font-size: 0.95srem;
+        }
+
+        /* Timeline list */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: var(--secondary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 4px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .time {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--warm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .activity-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .activity-desc {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .tips-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .tip-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .tabs { flex-direction: column; }
+            .day-panel { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Baguio City Itinerary</h1>
+        <p>Your ultimate 3-day guide to the Summer Capital of the Philippines—pine trees, cool breeze, art, and cafes.</p>
+        <div class="badge-container">
+            <span class="badge">🌲 3 Days / 2 Nights</span>
+            <span class="badge">☕ Café Hopping & Culture</span>
+            <span class="badge">⛰️ Cordillera Highlands</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Interactive Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchDay(1)">Day 1: Heart of the City</button>
+            <button class="tab-btn" onclick="switchDay(2)">Day 2: Nature & Culture</button>
+            <button class="tab-btn" onclick="switchDay(3)">Day 3: Art & Farewell</button>
+        </div>
+
+        <!-- Day 1 Panel -->
+        <div id="day-1" class="day-panel active">
+            <div class="day-header">
+                <h2>Day 1: Heart of the City & Iconic Parks</h2>
+                <p>Get oriented with Baguio’s classic tourist spots, central parks, and local food scene.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">08:00 AM</div>
+                    <div class="activity-title">Arrival & Morning Taho</div>
+                    <div class="activity-desc">Arrive in Baguio, check into your accommodation, and grab a warm cup of Strawberry or Ube Taho from local vendors near Burnham Park.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">09:30 AM</div>
+                    <div class="activity-title">Burnham Park & Boating</div>
+                    <div class="activity-desc">Stroll around the iconic urban park designed by Daniel Burnham. Rent a swan boat on the man-made lake or go biking around the grounds.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">12:00 PM</div>
+                    <div class="activity-title">Lunch at Oh My Gulay or Ili-Likha Artist Village</div>
+                    <div class="activity-desc">Immerse yourself in Baguio's bohemian art community while enjoying healthy, organic local dishes inside an architectural wonderland.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">03:00 PM</div>
+                    <div class="activity-title">Baguio Cathedral & Session Road Walk</div>
+                    <div class="activity-desc">Visit the iconic pinkish-rose Our Lady of Atonement Cathedral, then walk down Session Road for coffee and people-watching.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">06:30 PM</div>
+                    <div class="activity-title">Baguio Night Market (Session Road / Burnham area)</div>
+                    <div class="activity-desc">Hunt for vintage thrift clothes ("ukay-ukay") and sample local street food favorites like grilled skewered meats and sweet corn.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 Panel -->
+        <div id="day-2" class="day-panel">
+            <div class="day-header">
+                <h2>Day 2: Pines, History, & Panoramic Views</h2>
+                <p>Explore majestic pine forests, historical estates, and stunning valley viewpoints.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">08:30 AM</div>
+                    <div class="activity-title">Camp John Hay & Tree Top Adventure</div>
+                    <div class="activity-desc">Breathe in the crisp scent of pine trees. Walk through the historical Bell House and test your adrenaline with ziplining or canopy tours.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">11:30 AM</div>
+                    <div class="activity-title">Baguio Botanical Garden & Wright Park</div>
+                    <div class="activity-desc">Check out the traditional Cordillera huts, vibrant floral tunnels, and watch horses at Wright Park right across The Mansion.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">01:00 PM</div>
+                    <div class="activity-title">Lunch at Lemon and Olives Greek Taverna</div>
+                    <div class="activity-desc">Enjoy authentic Greek cuisine set against the relaxing hill slopes of Baguio.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">03:00 PM</div>
+                    <div class="activity-title">Mines View Park & Good Shepherd Convent</div>
+                    <div class="activity-desc">Marvel at the panoramic vistas of the Cordillera mountains and mining towns, then buy the famous Good Shepherd Ube Jam and Peanut Brittle.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">05:30 PM</div>
+                    <div class="activity-title">Sunset at SM Baguio Sky Terrace</div>
+                    <div class="activity-desc">Catch the cool evening air and a stunning golden hour view of the mountains from the mall's open-air terrace.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 Panel -->
+        <div id="day-3" class="day-panel">
+            <div class="day-header">
+                <h2>Day 3: Culture, Art, & Souvenirs</h2>
+                <p>Discover world-class indigenous art before heading back home with local delicacies.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">09:00 AM</div>
+                    <div class="activity-title">BenCab Museum (Tuba, Benguet)</div>
+                    <div class="activity-desc">Take a quick taxi ride down to National Artist BenCab’s sanctuary showcasing brilliant indigenous artifacts, contemporary paintings, and a tranquil duck pond garden.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">12:00 PM</div>
+                    <div class="activity-title">Lunch at Cafe Sabel</div>
+                    <div class="activity-desc">Dine right inside the BenCab Museum overlooking a misty eco-farm and organic gardens.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">02:30 PM</div>
+                    <div class="activity-title">Stobosa Valley of Colors & La Trinidad Strawberry Farm</div>
+                    <div class="activity-desc">Snap photos of the vibrant multicolored hillside houses, then head to the nearby farm to pick fresh strawberries.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="time">04:30 PM</div>
+                    <div class="activity-title">Baguio Public Market & Pasalubong Shopping</div>
+                    <div class="activity-desc">Stock up on fresh vegetables, coffee beans, choco flakes, and local crafts before your departure trip.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Travel Tips -->
+        <div class="tips-section">
+            <h3>💡 Quick Baguio Travel Tips</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>Weather Ready</h4>
+                    <p>Even during warm months, temperatures drop significantly at night. Always pack a light jacket or fleece hoodie.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Getting Around</h4>
+                    <p>Taxis are abundant, honest, and affordable for moving between major tourist spots. Jeepneys are great for short city loops.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Cash is King</h4>
+                    <p>While malls and major restaurants accept cards/GCash, keep small bills handy for market stalls, jeepneys, and entrance fees.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created for your Baguio Trip. Safe travels and enjoy the cool mountain breeze!</p>
+    </footer>
+
+    <script>
+        function switchDay(dayNum) {
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Remove active class from panels
+            const panels = document.querySelectorAll('.day-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Add active class to current selection
+            event.currentTarget.classList.add('active');
+            document.getElementById(`day-${dayNum}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
